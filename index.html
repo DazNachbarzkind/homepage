@@ -3,30 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pong gegen die KI</title>
+    <meta name="theme-color" content="#111827" />
+    <title>Pong – gemeinsam spielen</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="game-shell">
-      <h1>Pong gegen die KI</h1>
+      <header>
+        <p class="eyebrow">Echtzeit-Multiplayer · bis zu 3 Spieler</p>
+        <h1>Pong <span>zusammen.</span></h1>
+        <p class="intro">Wähle deinen Namen und sei bereit. Die Seiten werden automatisch verteilt.</p>
+      </header>
 
-      <section class="scoreboard" aria-label="Spielstand">
-        <div>
-          <span>Du</span>
-          <strong id="player-score">0</strong>
+      <section class="lobby" aria-label="Spiel-Lobby">
+        <div class="lobby-top">
+          <div>
+            <p class="section-label">SPIELER</p>
+            <div id="players-list" class="players-list">
+              <span class="waiting-player">Warte auf Spieler …</span>
+            </div>
+          </div>
+          <span id="connection-status" class="connection-status">Verbinde …</span>
         </div>
-        <div>
-          <span>KI</span>
-          <strong id="ai-score">0</strong>
+
+        <div class="join-controls">
+          <label for="player-name">Dein Name</label>
+          <div class="join-row">
+            <input id="player-name" maxlength="18" autocomplete="nickname" placeholder="Spieler" />
+            <button id="join-button" type="button" disabled>Spielen / bereit</button>
+            <button id="leave-button" type="button" class="secondary-button" hidden>Verlassen</button>
+          </div>
         </div>
       </section>
 
-      <canvas id="game" width="900" height="500" aria-label="Pong-Spiel"></canvas>
+      <section class="game-panel" aria-label="Pong-Spiel">
+        <div id="scoreboard" class="scoreboard" aria-label="Spielstand"></div>
+        <div class="canvas-wrap">
+          <canvas id="game" width="900" height="500" aria-label="Pong-Spielfeld"></canvas>
+          <p id="canvas-message" class="canvas-message">Werde der erste Spieler und warte auf Mitspieler.</p>
+        </div>
+        <p id="status" class="status" aria-live="polite">Verbinde dich mit der Lobby …</p>
+        <button id="restart-button" type="button" class="secondary-button restart-button" hidden>Neue Runde</button>
+        <p class="help">Bewege deinen Schläger mit der Maus oder per Touch. Mit ↑ / ↓ oder W / S geht es auch.</p>
+      </section>
 
-      <button id="start-button" type="button">Spiel starten</button>
-      <p id="status" aria-live="polite">Drücke auf „Spiel starten“.</p>
+      <footer>
+        <span>2 Spieler: klassisches Pong</span>
+        <span>3 Spieler: Dreiecksfeld – jeder verteidigt eine Seite</span>
+      </footer>
     </main>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
